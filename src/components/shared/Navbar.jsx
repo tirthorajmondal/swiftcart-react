@@ -21,7 +21,7 @@ const Navbar = () => {
         const localCart = localStorage.getItem('cart')
         localCart && setCartCount(JSON.parse(localCart).length);
     }, [])
-    
+
     return (
         <header className=" shadow-md  flex justify-between">
             <div className="navbar bg-base-100 max-w-7xl mx-auto">

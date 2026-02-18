@@ -1,7 +1,7 @@
 {
   "name": "swiftcart-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "author": "Tirtho Raj",
   "description": "E-Commerce React app for online shopping",

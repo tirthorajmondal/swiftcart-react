@@ -3,10 +3,10 @@ import Banner from './../../components/Home/Banner';
 
 const Home = () => {
     return (
-        <div>
+        <div className="pb-[80vh]">
             <SEO title={'Swiftcart | Home'} description={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum non pariatur, dicta beatae animi, recusandae vel, consequatur modi reprehenderit aspernatur minima ducimus voluptatibus.'} />
 
-            <Banner/>
+            <Banner />
         </div>
     );
 };
