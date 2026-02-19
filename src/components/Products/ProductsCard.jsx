@@ -5,7 +5,7 @@ const ProductsCard = ({ product }) => {
     const { id, title, image, price, category, rating, } = product;
     const navigate = useNavigate()
     return (
-        <div className="card bg-base-100 shadow-xl border border-gray-200 overflow-hidden h-full">
+        <div className="card bg-base-100 shadow-xl border border-gray-200 overflow-hidden h-full w-full">
             <figure className="px-4 pt-4 py-4 bg-gray-200 grow">
                 <img src={image} alt={title}
                     className="max-h-48 object-contain my-auto hover:scale-105 transition-all duration-300" />
@@ -25,8 +25,8 @@ const ProductsCard = ({ product }) => {
                 </div>
 
                 <div>
-                    <h2 className="text-xl font-bold text-slate-800">
-                        ${title.length > 35 ? title.slice(0, 35) + '...' : title}
+                    <h2 className="text-xl font-bold text-slate-800 cursor-default" title={title} >
+                        ${title.length > 40 ? title.slice(0, 40) + '...' : title}
                     </h2>
                     <p className="text-2xl font-black text-slate-900 mt-1">${price}</p>
                 </div>
@@ -37,7 +37,7 @@ const ProductsCard = ({ product }) => {
                         Details
                     </Link>
                     <button
-                        onClick={setCart(product)}
+                        onClick={() => setCart(product)}
                         className="btn bg-primary hover:bg-[#4533d1f5] border-none rounded-lg text-white normal-case">
                         <i className="fa-solid fa-cart-shopping mr-1"></i>
                         Add

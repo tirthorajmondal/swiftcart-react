@@ -12,7 +12,7 @@ const CategoryBtnContainer = ({ categories, loadCategoryProduct }) => {
             className="flex flex-wrap gap-4 w-11/12 md:w-full mx-auto  justify-center my-4 uppercase">
             <button
                 onClick={() => handlefilter('all')} //reload all products and set active style
-
+                disabled={activeCategory === 'all'}
                 className={`
                     ${activeCategory === 'all' && 'bg-primary text-white'}
                 btn btn-outline border-slate-400 rounded-full active category-button`}>All</button>
@@ -20,6 +20,7 @@ const CategoryBtnContainer = ({ categories, loadCategoryProduct }) => {
                 categories.map(category => <button
                     onClick={() => handlefilter(category)}
                     key={category}
+                    disabled={activeCategory === category}
                     className={`
                         ${category === activeCategory && 'bg-primary text-white'}
                     btn btn-outline border-slate-400 rounded-full uppercase`}>

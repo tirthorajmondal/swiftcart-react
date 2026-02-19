@@ -3,7 +3,7 @@ import CategoryBtnContainer from './CategoryBtnContainer';
 import SEO from '../../components/SEO/SEO';
 import ProductsCard from '../../components/Products/ProductsCard';
 
-const demoProduts = () => {
+const ProductsPage = () => {
     const [categories, setCaterories] = useState([])
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -18,12 +18,15 @@ const demoProduts = () => {
     const loadCategoryProduct = async (category) => {
         try {
             const url = category === 'all' ? `https://fakestoreapi.com/products` : `https://fakestoreapi.com/products/category/${category}`
-
+            setLoading(true)
             const res = await fetch(url)
             const data = await res.json()
             setProducts(data)
         } catch (error) {
             console.log('failed to load product', error);
+        }
+        finally {
+            setLoading(false)
         }
     }
 
@@ -54,4 +57,4 @@ const demoProduts = () => {
     );
 };
 
-export default demoProduts;
+export default ProductsPage;

@@ -28,20 +28,7 @@ const Products = () => {
         setProductsData(allProducts);
     }
 
-    const filterByCategory = async (category) => {
-        try {
-            setLoading(true)
-            const res = await fetch(`https://fakestoreapi.com/products/category/${category}`)
-            const data = await res.json()
-            setProductsData(data)
-            setLoading(false)
-        } catch (error) {
-            console.log("Failed to filter", error);
-        }
-        finally {
-            setLoading(false)
-        }
-    }
+
 
 
     useEffect(() => {
