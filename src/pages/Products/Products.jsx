@@ -3,6 +3,7 @@ import SEO from "../../components/SEO/SEO";
 import ProductsCard from "../../components/Products/ProductsCard";
 import { NavLink } from "react-router-dom";
 import CategoryBtnContainer from "./CategoryBtnContainer";
+import { getProductsData } from "../../utils";
 
 const Products = () => {
     const [productsData, setProductsData] = useState([])
@@ -10,17 +11,7 @@ const Products = () => {
     const [loading, setLoading] = useState(false)
     const [activeBtn, setaActiveBtn] = useState(false)
 
-    const getProductsData = async () => {
-        try {
-            setLoading(true)
-            const res = await fetch('https://fakestoreapi.com/products')
-            const data = await res.json()
-            setProductsData(data)
-            setLoading(false)
-        } catch (error) {
-            console.log(error);
-        }
-    }
+
     const getCategoriesName = async () => {
         try {
             setLoading(true)
@@ -34,7 +25,7 @@ const Products = () => {
         }
     }
     const reloadAllProducts = (e) => {
-        getProductsData()
+        const allProducts = getProductsData()
         console.log(e.target);
     }
 
@@ -52,7 +43,8 @@ const Products = () => {
 
 
     useEffect(() => {
-        getProductsData()
+        const allProducts = getProductsData()
+        setProductsData(allProducts)
         getCategoriesName()
     }, [])
 
@@ -60,7 +52,7 @@ const Products = () => {
     return (
         <section className="max-w-7xl mx-auto">
             <SEO title={'Swiftcart | Products'} description={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum non pariatur, dicta beatae animi, recusandae vel, consequatur modi reprehenderit aspernatur minima ducimus voluptatibus.'} />
-            <div className="py-8">
+            {/* <div className="py-8">
                 <h2 className="text-xl lg:text-3xl font-bold text-center">Our Products</h2>
                 <CategoryBtnContainer
                     caterories={caterories}
@@ -74,7 +66,7 @@ const Products = () => {
                     }
                 </div>
 
-            </div>
+            </div> */}
         </section >
     );
 };

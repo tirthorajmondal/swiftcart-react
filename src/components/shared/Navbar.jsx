@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCart } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
+import { getCart } from "../../utils";
 
 const Navbar = () => {
     // navlinks and styles
@@ -16,11 +17,11 @@ const Navbar = () => {
     </>
 
     const [cartCount, setCartCount] = useState(0)
+    const localCart = getCart()
 
     useEffect(() => {
-        const localCart = localStorage.getItem('cart')
-        localCart && setCartCount(JSON.parse(localCart).length);
-    }, [])
+        setCartCount(localCart.length);
+    }, [localCart])
 
     return (
         <header className=" shadow-md  flex justify-between ">

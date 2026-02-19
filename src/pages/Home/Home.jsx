@@ -1,6 +1,7 @@
 import WhyChooseUs from "../../components/Home/WhyChooseUs";
 import SEO from "../../components/SEO/SEO";
 import Banner from './../../components/Home/Banner';
+import Trending from './../../components/Home/Trending';
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
 
             <Banner />
             <WhyChooseUs />
+            <Trending/>
         </div>
     );
 };

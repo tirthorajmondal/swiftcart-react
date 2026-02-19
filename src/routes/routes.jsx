@@ -13,7 +13,8 @@ const router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
-                Component: Home
+                Component: Home,
+                loader: () => fetch("https://fakestoreapi.com/products")
             },
             {
                 path: '/products',
@@ -21,7 +22,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/product/:id',
-                Component: ProductDetails
+                Component: ProductDetails,
+                loader: ({ params }) => fetch(`https://fakestoreapi.com/products/${params.id}`)
+
             },
             {
                 path: '/cart',

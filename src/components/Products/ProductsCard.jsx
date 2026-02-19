@@ -1,6 +1,8 @@
+import { Link, useNavigate } from "react-router-dom";
 
 const ProductsCard = ({ product }) => {
     const { id, title, image, price, category, rating, } = product;
+    const navigate = useNavigate()
     return (
         <div className="card bg-base-100 shadow-xl border border-gray-200 overflow-hidden h-full">
             <figure className="px-4 pt-4 py-4 bg-gray-200 grow">
@@ -29,12 +31,10 @@ const ProductsCard = ({ product }) => {
                 </div>
 
                 <div className="card-actions grid grid-cols-2 gap-3 mt-2">
-                    <button
-                        // onClick={() => showDetails(id)}
+                    <Link to={`/product/${id}`}
                         className="btn btn-outline border-gray-300 text-slate-600 rounded-lg hover:bg-gray-50 hover:border-gray-400 normal-case">
-                        <i className="fa-regular fa-eye mr-1"></i>
                         Details
-                    </button>
+                    </Link>
                     <button
                         // onclick="addToCart(${id})"
                         className="btn bg-primary hover:bg-[#4533d1f5] border-none rounded-lg text-white normal-case">
