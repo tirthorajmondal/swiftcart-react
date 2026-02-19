@@ -1,13 +1,13 @@
 import bannerImg from '../../assets/banner/banner.png';
 const Banner = () => {
     return (
-        <section className="absolute left-0 right-0 min-w-full md: min-h-[80vh] bg-cover bg-center text-white bg-blend-multiply flex items-center" style={{
+        <section className="w-full min-h-[80vh] bg-cover bg-center text-white bg-blend-multiply flex items-center" style={{
             backgroundColor: "rgba(0, 0, 0, 0.6)",
             backgroundImage: `url(${bannerImg})`,
 
         }} >
 
-            <div className=" min-h-full xl:max-w-7xl w-full xl:mx-auto">
+            <div className="max-w-7xl mx-auto w-full">
                 <div className=" mx-16 md:mx-24 xl:mx-auto">
                     <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold">Best Collection For You</h1>
                     <p

@@ -23,8 +23,8 @@ const Navbar = () => {
     }, [])
 
     return (
-        <header className=" shadow-md  flex justify-between">
-            <div className="navbar bg-base-100 max-w-7xl mx-auto">
+        <header className=" shadow-md  flex justify-between ">
+            <div className="navbar bg-gray-100 max-w-7xl mx-auto">
                 <div className="navbar-start">
 
                     <Link to="/" className="text-2xl text-primary font-bold">Swiftcart</Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
                             className="cart-count absolute -left-1 -bottom-2 leading-none rounded-xl text-xs text-white w-fit bg-primary p-0.5">{cartCount || 0}</span>
                     </Link>
 
-                    <div className="dropdown dropdown-end">
+                    <div className="dropdown dropdown-end z-50">
                         <div tabIndex="0" role="button" className=" btn border-0 lg:hidden p-1 h-fit">
                             {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">

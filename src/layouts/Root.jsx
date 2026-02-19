@@ -6,9 +6,9 @@ const Root = () => {
     console.log(`${window.innerWidth} x ${window.innerHeight}`);
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col bg-gray-100'>
             <Navbar />
-            <div className="min-h-[calc(100vh-401px)] max-w-7xl mx-auto">
+            <div className="min-h-[calc(100vh-401px)]">
                 <Outlet />
             </div>
             <Footer />
