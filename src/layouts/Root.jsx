@@ -3,7 +3,7 @@ import Navbar from '../components/shared/Navbar';
 import Footer from '../components/shared/Footer';
 
 const Root = () => {
-    console.log(`${window.innerWidth} x ${window.innerHeight}`);
+    // console.log(`${window.innerWidth} x ${window.innerHeight}`);
 
     return (
         <div className='flex flex-col bg-gray-100'>

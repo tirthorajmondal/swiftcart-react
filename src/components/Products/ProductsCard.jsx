@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { setCart } from "../../utils";
 
 const ProductsCard = ({ product }) => {
     const { id, title, image, price, category, rating, } = product;
@@ -36,7 +37,7 @@ const ProductsCard = ({ product }) => {
                         Details
                     </Link>
                     <button
-                        // onclick="addToCart(${id})"
+                        onClick={setCart(product)}
                         className="btn bg-primary hover:bg-[#4533d1f5] border-none rounded-lg text-white normal-case">
                         <i className="fa-solid fa-cart-shopping mr-1"></i>
                         Add

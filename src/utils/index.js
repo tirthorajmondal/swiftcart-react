@@ -1,10 +1,11 @@
+// fetch all products data
 const getProductsData = async () => {
     try {
         const res = await fetch('https://fakestoreapi.com/products')
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error);
+        console.log("fetching products data", error);
     }
 }
 
@@ -16,9 +17,11 @@ const getCart = () => {
 const setCart = (product) => {
     const cart = getCart()
     const isExist = cart.find(p => p.id === product.id)
-    if (isExist) return console.log('product already exist ');
+    if (isExist) {
+        console.log('product already exist ')
+        return
+    }
     const newCart = [...cart, product]
-    console.log(newCart);
     localStorage.setItem('cart', JSON.stringify(newCart))
 }
 

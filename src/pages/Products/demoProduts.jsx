@@ -1,0 +1,57 @@
+import { useEffect, useState } from 'react';
+import CategoryBtnContainer from './CategoryBtnContainer';
+import SEO from '../../components/SEO/SEO';
+import ProductsCard from '../../components/Products/ProductsCard';
+
+const demoProduts = () => {
+    const [categories, setCaterories] = useState([])
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const loadCategory = async () => {
+        const url = `https://fakestoreapi.com/products/categories`
+        const res = await fetch(url)
+        const data = await res.json()
+        setCaterories(data)
+    }
+
+    const loadCategoryProduct = async (category) => {
+        try {
+            const url = category === 'all' ? `https://fakestoreapi.com/products` : `https://fakestoreapi.com/products/category/${category}`
+
+            const res = await fetch(url)
+            const data = await res.json()
+            setProducts(data)
+        } catch (error) {
+            console.log('failed to load product', error);
+        }
+    }
+
+    useEffect(() => {
+        loadCategory()
+        loadCategoryProduct('all')
+    }, [])
+
+    return (
+        <section className="max-w-7xl mx-auto">
+            <SEO title={'Swiftcart | Products'} description={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum non pariatur, dicta beatae animi, recusandae vel, consequatur modi reprehenderit aspernatur minima ducimus voluptatibus.'} />
+            <div className="py-8">
+                <h2 className="text-xl lg:text-3xl font-bold text-center">Our Products</h2>
+                <CategoryBtnContainer
+                    categories={categories}
+                    loadCategoryProduct={loadCategoryProduct}
+                />
+                <div
+                    className="grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-8 content-stretch min-h-20 place-items-center">
+                    {loading && <span className="mx-auto loading loading-bars loading-md col-span-4"></span>}
+                    {
+                        products.map(product => <ProductsCard key={product.id} product={product} />)
+                    }
+                </div>
+
+            </div>
+        </section >
+    );
+};
+
+export default demoProduts;

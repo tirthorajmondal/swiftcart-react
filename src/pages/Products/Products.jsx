@@ -9,8 +9,7 @@ const Products = () => {
     const [productsData, setProductsData] = useState([])
     const [caterories, setCaterories] = useState([])
     const [loading, setLoading] = useState(false)
-    const [activeBtn, setaActiveBtn] = useState(false)
-
+    const [activeBtn, setaActiveBtn] = useState('false')
 
     const getCategoriesName = async () => {
         try {
@@ -24,9 +23,9 @@ const Products = () => {
             console.log(error);
         }
     }
-    const reloadAllProducts = (e) => {
-        const allProducts = getProductsData()
-        console.log(e.target);
+    const reloadAllProducts = async (e) => {
+        const allProducts = await getProductsData()
+        setProductsData(allProducts);
     }
 
     const filterByCategory = async (category) => {
@@ -37,22 +36,28 @@ const Products = () => {
             setProductsData(data)
             setLoading(false)
         } catch (error) {
-            console.log(error);
+            console.log("Failed to filter", error);
+        }
+        finally {
+            setLoading(false)
         }
     }
 
 
     useEffect(() => {
-        const allProducts = getProductsData()
-        setProductsData(allProducts)
+        const LoadAllProducts = async () => {
+            const products = getProductsData()
+            setProductsData(products)
+        }
+        LoadAllProducts()
         getCategoriesName()
     }, [])
-
+    // console.log(productsData);
 
     return (
         <section className="max-w-7xl mx-auto">
             <SEO title={'Swiftcart | Products'} description={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum non pariatur, dicta beatae animi, recusandae vel, consequatur modi reprehenderit aspernatur minima ducimus voluptatibus.'} />
-            {/* <div className="py-8">
+            <div className="py-8">
                 <h2 className="text-xl lg:text-3xl font-bold text-center">Our Products</h2>
                 <CategoryBtnContainer
                     caterories={caterories}
@@ -62,11 +67,11 @@ const Products = () => {
                     className="grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-8 content-stretch min-h-20 place-items-center">
                     {loading && <span className="mx-auto loading loading-bars loading-md col-span-4"></span>}
                     {
-                        productsData.map(product => <ProductsCard key={product.id} product={product} />)
+                        // productsData.map(product => <ProductsCard key={product.id} product={product} />)
                     }
                 </div>
 
-            </div> */}
+            </div>
         </section >
     );
 };
