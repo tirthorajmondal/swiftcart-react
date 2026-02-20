@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { setCart } from "../../utils";
+import useCart from "../../hooks/useCart";
 
 const ProductsCard = ({ product }) => {
     const { id, title, image, price, category, rating, } = product;
     const navigate = useNavigate()
+    const { addToCart } = useCart();
     return (
         <div className="card bg-base-100 shadow-xl border border-gray-200 overflow-hidden h-full w-full">
             <figure className="px-4 pt-4 py-4 bg-gray-200 grow">
@@ -37,7 +38,7 @@ const ProductsCard = ({ product }) => {
                         Details
                     </Link>
                     <button
-                        onClick={() => setCart(product)}
+                        onClick={() => addToCart(product)}
                         className="btn bg-primary hover:bg-[#4533d1f5] border-none rounded-lg text-white normal-case">
                         <i className="fa-solid fa-cart-shopping mr-1"></i>
                         Add

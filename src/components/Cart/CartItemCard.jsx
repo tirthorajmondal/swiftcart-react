@@ -1,20 +1,20 @@
-import { useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import useCart from "../../hooks/useCart";
 
-const CartItemCard = ({ product }) => {
-    const { id, title, image, category, price, } = product;
-    const [qty, setQty] = useState(1)
-    // const [total, setTotal] = useState(0)
+const CartItemCard = ({ item }) => {
+    const { id, title, image, category, price, quantity } = item;
+    const { updateQuantity, removeFromCart } = useCart()
+
 
     const decreaseCount = () => {
-        if (qty === 1) return
-        setQty(qty - 1)
+        updateQuantity(id, quantity - 1)
+    }
+    const increaseCount = () => {
+        updateQuantity(id, quantity + 1)
     }
 
 
-    const deleteCartItem = (id) => {
-        console.log(id);
-    }
+
     return (
         <div className='flex  items-center gap-3 md:gap-6 bg-white p-3 md:p-5 rounded-2xl shadow-sm border border-gray-100'>
             <div className="w-16 md:w-32 h-16 md:h-32 shrink-0 bg-gray-100 rounded-xl p-2">
@@ -30,15 +30,15 @@ const CartItemCard = ({ product }) => {
             <div className="flex items-center border border-gray-200 rounded-lg">
                 <button
                     onClick={decreaseCount}
-
-                    className="px-3 py-1 bg-gray-50 hover:bg-gray-100 border-r border-gray-200">-</button>
-                <span className="px-4 py-1 font-bold">{qty}</span>
+                    disabled={quantity === 1}
+                    className={`${quantity === 1 && 'cursor-not-allowed'} px-3 py-1 bg-gray-50 hover:bg-gray-100 border-r border-gray-200`}>-</button>
+                <span className="px-4 py-1 font-bold">{quantity}</span>
                 <button
-                    onClick={() => setQty(qty + 1)}
+                    onClick={increaseCount}
                     className="px-3 py-1 bg-gray-50 hover:bg-gray-100 border-l border-gray-200">+</button>
             </div>
 
-            <button onClick={() => deleteCartItem(id)} className="btn btn-ghost btn-circle text-red-400 hover:text-red-600">
+            <button onClick={() => removeFromCart(id)} className="btn btn-ghost btn-circle text-red-400 hover:text-red-600">
                 <RiDeleteBin6Fill className="text-red-500 text-xl" />
             </button>
         </div>

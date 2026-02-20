@@ -1,18 +1,19 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { setCart } from "../../utils";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 
 const ProductDetails = () => {
     const [productInfo, setProductInfo] = useState({})
     const product = useLoaderData() || {}
+    const { addToCart } = useCart();
     // console.log(product);
     const { id, title, image, price, category, rating, description } = productInfo;
-    const stock = 300;
+    const stock = 300; //dummy stock 
 
-    const addToCart = () => {
-        setCart(productInfo)
+    const handleAddToCart = () => {
+        addToCart(productInfo)
     }
 
     useEffect(() => {
@@ -75,7 +76,7 @@ const ProductDetails = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
                     <button
-                        onClick={addToCart}
+                        onClick={handleAddToCart}
                         className="btn btn-primary btn-lg shadow-lg shadow-indigo-200 hover:shadow-indigo-300 transition-all border-none normal-case flex items-center gap-2"
                     >
                         <i className="fa-solid fa-cart-shopping"></i>

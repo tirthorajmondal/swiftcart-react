@@ -2,9 +2,16 @@ import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCart } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
-import { getCart } from "../../utils";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
+    const { cartItems } = useCart();
+    const [cartCount, setCartCount] = useState(cartItems.length || 0)
+
+    useEffect(() => {
+        setCartCount(cartItems.length)
+    }, [cartItems])
+
     // navlinks and styles
     const linkStyle = "px-2 py-1 font-bold rounded-lg transition-all duration-300";
     const activeStyle = "text-primary";
@@ -15,13 +22,6 @@ const Navbar = () => {
         <NavLink to='/about' className={({ isActive }) => `${linkStyle} ${isActive ? activeStyle : idleStyle}`}>About</NavLink>
         <NavLink to='/contact' className={({ isActive }) => `${linkStyle} ${isActive ? activeStyle : idleStyle}`}>Contact</NavLink>
     </>
-
-    const [cartCount, setCartCount] = useState(0)
-    const localCart = getCart()
-
-    useEffect(() => {
-        setCartCount(localCart.length);
-    }, [localCart])
 
     return (
         <header className=" shadow-md  flex justify-between ">

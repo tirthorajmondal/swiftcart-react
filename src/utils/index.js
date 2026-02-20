@@ -9,20 +9,5 @@ const getProductsData = async () => {
     }
 }
 
-// cart
-const getCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || []
-    return cartItems;
-}
-const setCart = (product) => {
-    const cart = getCart()
-    const isExist = cart.find(p => p.id === product.id)
-    if (isExist) {
-        console.log('product already exist ')
-        return
-    }
-    const newCart = [...cart, product]
-    localStorage.setItem('cart', JSON.stringify(newCart))
-}
 
-export { getProductsData, getCart, setCart }
+export { getProductsData }

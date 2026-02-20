@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartItemCard from "../../components/Cart/CartItemCard";
-import { getCart } from "../../utils";
+import useCart from "../../hooks/useCart";
 
 const Cart = () => {
-    const [items, setItems] = useState(getCart() || [])
-    const [sutTotal, setSubTotal] = useState(0)
+    const { cartItems, getTotal } = useCart();
+    const [subTotal, setSubTotal] = useState(0)
 
-
-    console.log(items);
-
+    useEffect(() => {
+        setSubTotal(getTotal())
+    }, [cartItems, getTotal])
+    
     return (
         <div className="container mx-auto p-6 min-h-screen ">
             <h1 className="text-3xl font-black text-slate-800 mb-8">Your Shopping Bag</h1>
@@ -17,7 +18,8 @@ const Cart = () => {
                 <div className="lg:col-span-2 space-y-4 ">
                     {/* cart items here */}
                     {
-                        items.map(cart => <CartItemCard key={cart.id} product={cart} />)
+                        cartItems.map(cart => <CartItemCard key={cart.id}
+                            item={cart} />)
                     }
                 </div>
 
@@ -26,7 +28,7 @@ const Cart = () => {
                     <div className="space-y-3 text-slate-600">
                         <div className="flex justify-between">
                             <span>Subtotal</span>
-                            <span >$0.00</span>
+                            <span >${subTotal}</span>
                         </div>
                         <div className="flex justify-between">
                             <span>Shipping</span>
@@ -35,7 +37,7 @@ const Cart = () => {
                         <div className="divider"></div>
                         <div className="flex justify-between text-xl font-black text-slate-900">
                             <span>Total</span>
-                            <span >$0.00</span>
+                            <span >${subTotal}</span>
                         </div>
                     </div>
                     <button className="btn btn-primary w-full mt-6 text-white rounded-xl">
