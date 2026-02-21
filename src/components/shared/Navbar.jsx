@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCart } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import { LuShoppingBasket } from "react-icons/lu";
 
 const Navbar = () => {
     const { cartItems } = useCart();
@@ -36,7 +37,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to="/cart" className="pr-3 relative  w-fit"><IoMdCart className="text-2xl" />
+                    <Link to="/cart" className="pr-3 relative  w-fit"><LuShoppingBasket
+                        className="text-2xl" />
 
                         <span
                             className="cart-count absolute -left-1 -bottom-2 leading-none rounded-xl text-xs text-white w-fit bg-primary p-0.5">{cartCount || 0}</span>

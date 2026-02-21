@@ -2,6 +2,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import { RiShoppingBagLine } from "react-icons/ri";
+import { PiShoppingCartSimpleBold } from "react-icons/pi";
 
 
 const ProductDetails = () => {
@@ -84,11 +86,11 @@ const ProductDetails = () => {
                     </button>
 
                     <Link
-                        to="/products"
-                        className="btn btn-outline btn-lg border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 normal-case flex items-center gap-2"
+                        to="/cart"
+                        className="btn btn-outline btn-lg border-slate-200 text-slate-600 shadow-md hover:bg-slate-50 hover:border-slate-300 normal-case flex items-center gap-2"
                     >
-                        <i className="fa-solid fa-arrow-left"></i>
-                        Explore More
+                        <PiShoppingCartSimpleBold />
+                        Buy Now
                     </Link>
                 </div>
             </div>

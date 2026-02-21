@@ -38,14 +38,14 @@ const ProductsPage = () => {
     return (
         <section className="max-w-7xl mx-auto">
             <SEO title={'Swiftcart | Products'} description={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum non pariatur, dicta beatae animi, recusandae vel, consequatur modi reprehenderit aspernatur minima ducimus voluptatibus.'} />
-            <div className="py-8">
+            <div className="py-8 px-4 xl:px-0">
                 <h2 className="text-xl lg:text-3xl font-bold text-center">Our Products</h2>
                 <CategoryBtnContainer
                     categories={categories}
                     loadCategoryProduct={loadCategoryProduct}
                 />
                 <div
-                    className="grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-8 content-stretch min-h-20 place-items-center">
+                    className="grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8 content-stretch min-h-20 place-items-center">
                     {loading && <span className="mx-auto loading loading-bars loading-md col-span-4"></span>}
                     {
                         products.map(product => <ProductsCard key={product.id} product={product} />)
