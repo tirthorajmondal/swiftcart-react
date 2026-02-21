@@ -7,8 +7,7 @@ const SEO = ({ title, description, }) => {
         <Helmet>
             <title>{title}</title>
             <meta name="description" content={description} />
-            <meta name="keywords" content="ecommerce, online shopping, trending shopping , online store, best buy" />
-            {/* <meta name='og-title' /> */}
+            <meta name="keywords" content="swiftcart, swiftcart ecommerce, ecommerce, online shopping, trending shopping , online store, best buy" />
         </Helmet>
     );
 };

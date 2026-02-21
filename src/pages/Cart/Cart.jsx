@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CartItemCard from "../../components/Cart/CartItemCard";
 import useCart from "../../hooks/useCart";
+import SEO from "../../components/SEO/SEO";
 
 const Cart = () => {
     const { cartItems, getTotal } = useCart();
@@ -11,7 +12,9 @@ const Cart = () => {
     }, [cartItems, getTotal])
     
     return (
-        <div className="container mx-auto p-6 min-h-screen ">
+        <>
+            <SEO title={'Swiftcart | Shopping Cart'} description={'Review your shopping bag and proceed to checkout. Swiftcart offers secure payment, fast delivery, and exceptional customer service. Complete your purchase today!'} />
+            <div className="container mx-auto p-6 min-h-screen ">
             <h1 className="text-3xl font-black text-slate-800 mb-8">Your Shopping Bag</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -46,6 +49,7 @@ const Cart = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

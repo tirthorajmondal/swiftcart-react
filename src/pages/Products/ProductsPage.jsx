@@ -37,7 +37,8 @@ const ProductsPage = () => {
 
     return (
         <section className="max-w-7xl mx-auto">
-            <SEO title={'Swiftcart | Products'} description={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum non pariatur, dicta beatae animi, recusandae vel, consequatur modi reprehenderit aspernatur minima ducimus voluptatibus.'} />
+            <SEO title={'Swiftcart | Products'} description="Browse a wide selection of products across various categories. Find the best deals and latest items available at Swiftcart." />
+
             <div className="py-8 px-4 xl:px-0">
                 <h2 className="text-xl lg:text-3xl font-bold text-center">Our Products</h2>
                 <CategoryBtnContainer

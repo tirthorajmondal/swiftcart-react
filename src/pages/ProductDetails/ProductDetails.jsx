@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import SEO from "../../components/SEO/SEO";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 
@@ -27,7 +28,10 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="flex flex-col lg:flex-row gap-10 p-2 py-6 lg:py-10 max-w-6xl mx-auto animate-fadeIn">
+        <>
+            <SEO title={`Swiftcart | ${title || 'Product Details'}`} description={`${title ? title.substring(0, 100) : 'Discover amazing products'} - Price: $${price || '0'}. Shop with Swiftcart for quality products and fast delivery.`} />
+            
+            <div className="flex flex-col lg:flex-row gap-10 p-2 py-6 lg:py-10 max-w-6xl mx-auto animate-fadeIn">
             {/*  Image container */}
             <div className="w-full lg:w-1/2 flex items-center justify-center bg-slate-50 rounded-3xl p-8 border border-slate-100 overflow-hidden group shadow">
                 <img
@@ -95,6 +99,7 @@ const ProductDetails = () => {
                 </div>
             </div>
         </div >
+        </>
     );
 };
 

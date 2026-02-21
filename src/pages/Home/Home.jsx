@@ -6,7 +6,7 @@ import Trending from './../../components/Home/Trending';
 const Home = () => {
     return (
         <div className="">
-            <SEO title={'Swiftcart | Home'} description={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum non pariatur, dicta beatae animi, recusandae vel, consequatur modi reprehenderit aspernatur minima ducimus voluptatibus.'} />
+            <SEO title={'Swiftcart | Home'} description={'Welcome to Swiftcart, your one-stop shop for trending products and exclusive deals. Discover why customers choose us and explore our latest offerings.'} />
 
             <Banner />
             <WhyChooseUs />
