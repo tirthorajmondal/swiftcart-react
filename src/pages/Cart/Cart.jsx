@@ -26,9 +26,9 @@ const Cart = () => {
         const message = `
         🛒 *SwiftCart – অর্ডার মেমো*
 
-         ━━━━━━━━━━━━━━━━━━
+        ━━━━━━━━━━━━━━━━━━
         📋 *Order Details (পণ্যের তথ্য)*
-         ━━━━━━━━━━━━━━━━━━
+        ━━━━━━━━━━━━━━━━━━
 
         ${itemsInfo}
 
@@ -49,11 +49,11 @@ const Cart = () => {
         👨🏻‍💻 *Customer Details:*
         ━━━━━━━━━━━━━━━━━━
 
-        🎀*Name: ${customerName}* 
+        🎀 *Name: ${customerName}* 
 
         📍*Address: ${customerAddress}*
 
-        📞 *Contact Number: *${customerPhone}
+        📞 *Contact Number:* ${customerPhone}
 
         👉 অর্ডারটি নিশ্চিত করতে *CONFIRM* লিখে রিপ্লাই করুন।  
 

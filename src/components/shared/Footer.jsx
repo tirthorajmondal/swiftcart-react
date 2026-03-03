@@ -23,7 +23,7 @@ const Footer = () => {
                         className="flex flex-col gap-1 col-span-6 md:col-span-2 place-self-end md:place-self-start mr-16 md:mr-0">
                         <h6 className="footer-title">Company</h6>
                         <Link to="" className="link link-hover">About us</Link>
-                        <Link to="" className="link link-hover">Contact</Link>
+                        <Link to="/contact" className="link link-hover">Contact</Link>
                         <Link to="" className="link link-hover">Jobs</Link>
                         <Link to="" className="link link-hover">Press kit</Link>
                     </nav>
