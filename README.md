@@ -72,17 +72,22 @@ swiftcart-react/
 └── README.md                         # Project documentation
 ```
 
-## Benefits
-- **Performance**: Built with Vite, ensuring fast build times and quick reloads during development.
-- **Scalability**: The use of React's Context API allows for easy scaling of the application as new features are added.
-- **User Experience**: Focused on providing a smooth and intuitive shopping experience for users.
 
-## Future Works
-- **Enhanced Features**: Plans to implement user authentication and profile management.
+
+## Future Implementation
+- **User Authentication**: Implement user login and registration features to enhance user experience and security.
+- **Payment Integration**: Integrate payment gateways for secure transactions.
+- **Product Reviews**: Allow users to leave reviews and ratings for products.
+- **Wishlist Feature**: Enable users to save products for later purchase.
+- **Admin Dashboard**: Create an admin interface for managing products, orders, and users.
+- **Performance Optimization**: Continuously improve the app's performance and loading times.
+- **SEO Enhancements**: Further optimize the application for search engines to increase visibility.
+- **Accessibility Improvements**: Ensure the application is accessible to all users.
 - **Improved UI/UX**: Continuous updates to enhance the user interface and overall experience.
 - **Testing**: Implementing unit and integration tests to ensure application reliability.
 
 ## Live Link
+
 You can view the live version of the SwiftCart application at: [Live Demo]([https://](http://swiftcart-react-by-tirtho.netlify.app/))
 
 

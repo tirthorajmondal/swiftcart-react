@@ -33,6 +33,17 @@ const CartProvider = ({ children }) => {
         toast.success('Added to cart')
     };
 
+    // get all products with custom message
+    const getProductsMessage = () => {
+        const productsMessage = cartItems.map(item => `
+        🔹 *Name: ${item.title}* (🆔: ${item.id}) 
+
+        ⚖️ *Quantity:* ${item.quantity} 
+
+        💰 *Subtotal:* ৳ _${(item.price * item.quantity).toFixed(2)}_`).join('\n\n');
+        return productsMessage;
+    };
+
     // update product quantity
     const updateQuantity = (id, newQty) => {
         const updatedCart = cartItems.map(item => {
@@ -60,14 +71,21 @@ const CartProvider = ({ children }) => {
         }, 0).toFixed(2); //set 2 digit after point
     };
 
+    // clear cart
+    const clearCart = () => {
+        setCartItems([]);
+        localStorage.removeItem('cart');
+    }
     const value = {
         cartItems,
         getCart,
         getCartCount,
+        getProductsMessage,
         addToCart,
         updateQuantity,
         removeFromCart,
         getTotal,
+        clearCart
     };
 
 

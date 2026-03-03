@@ -17,6 +17,7 @@ const ProductsPage = () => {
 
     const loadCategoryProduct = async (category) => {
         try {
+            setProducts([])
             const url = category === 'all' ? `https://fakestoreapi.com/products` : `https://fakestoreapi.com/products/category/${category}`
             setLoading(true)
             const res = await fetch(url)
@@ -47,8 +48,8 @@ const ProductsPage = () => {
                 />
                 <div
                     className="grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8 content-stretch min-h-20 place-items-center">
-                    {loading && <span className="mx-auto loading loading-bars loading-md col-span-4"></span>}
-                    {
+                    {loading ? <span className="mx-auto loading loading-bars loading-md col-span-4"></span> :
+
                         products.map(product => <ProductsCard key={product.id} product={product} />)
                     }
                 </div>

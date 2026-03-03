@@ -16,13 +16,13 @@ const CartItemCard = ({ item }) => {
 
 
     return (
-        <div className='flex  items-center gap-3 md:gap-6 bg-white p-3 md:p-5 rounded-2xl shadow-sm border border-gray-100'>
+        <div className='flex items-center gap-3 md:gap-6 bg-white p-3 md:p-5 rounded-2xl shadow-sm border border-gray-100'>
             <div className="w-16 md:w-32 h-16 md:h-32 shrink-0 bg-gray-100 rounded-xl p-2">
                 <img src={image} alt={title} className="w-full h-full object-contain" />
             </div>
 
-            <div className="grow">
-                <h3 className="md:text-lg font-bold text-slate-800 line-clamp-1 md:line-clamp-2">{title}</h3>
+            <div className="grow min-w-0">
+                <h3 title={title} className="text-sm mb-1 md:text-lg font-bold text-slate-800 line-clamp-2  wrap-break-word">{title}</h3>
                 <p className="text-xs md:text-sm text-slate-500 uppercase mb-2">{category}</p>
                 <p className="md:text-xl font-black text-indigo-600">${price}</p>
             </div>
