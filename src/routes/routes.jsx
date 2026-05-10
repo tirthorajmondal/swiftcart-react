@@ -8,6 +8,7 @@ import Error from "../pages/Error/Error";
 import Contact from "../pages/Contact/Contact";
 import SignUp from "../pages/SignUp/SignUp";
 import Login from "../pages/Login/Login";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 Component: Login
+            },
+            {
+                path: '/profile',
+                Component: Profile
             },
 
         ]

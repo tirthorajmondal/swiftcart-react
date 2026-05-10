@@ -1,25 +1,43 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from './../../hooks/useAuth';
 
 const SignUp = () => {
-    const { signupWithEmailAndPassword, user, loading, setLoading } = useAuth();
+    const { signupWithEmailAndPassword,handleToggleWatch, updateUserProfile, user, loading, setLoading } = useAuth();
     const location = useLocation();
-    console.log(location);
+    // console.log(location);
+    const navigate = useNavigate()
 
     const handleSignUp = (e) => {
         e.preventDefault();
 
         const form = e.target;
         const email = form.email.value;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const password = form.password.value;
-        console.log(email, password);
+        const confirmPassword = form.confirmPassword.value;
+        console.log(email, password, password === confirmPassword);
+
+        if (password !== confirmPassword) {
+            console.log('Passwords do not match');
+            return;
+        }
 
         signupWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // Signed up successfully   
-                const user = userCredential.user;
-                console.log('User signed up:', user);
-                setLoading(false);
+            .then(() => {
+                // Signed up successfully 
+                updateUserProfile(name, photoURL)
+                    .then(() => {
+                        window.location.reload();
+                        // navigate(location.state?.from?.pathname || '/');
+                        console.log('User signed up and profile updated:', user);
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.error('Error updating profile:', error.message);
+                        setLoading(false);
+                    });
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -28,6 +46,8 @@ const SignUp = () => {
                 setLoading(false);
             });
     }
+
+
 
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -45,7 +65,21 @@ const SignUp = () => {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form onSubmit={handleSignUp} className="space-y-6">
                     <div>
-                        <label  className="block text-sm/6 font-medium text-gray-900">
+                        <label className="block text-sm/6 font-medium text-gray-900">
+                            Name
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                name="name"
+                                type="text"
+                                required
+                                autoComplete="name"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label className="block text-sm/6 font-medium text-gray-900">
                             Email address
                         </label>
                         <div className="mt-2">
@@ -58,10 +92,24 @@ const SignUp = () => {
                             />
                         </div>
                     </div>
+                    <div>
+                        <label className="block text-sm/6 font-medium text-gray-900">
+                            Photo URL
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                name="photoURL"
+                                type="text"
+                                required
+                                autoComplete="photoURL"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            />
+                        </div>
+                    </div>
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label  className="block text-sm/6 font-medium text-gray-900">
+                            <label className="block text-sm/6 font-medium text-gray-900">
                                 Password
                             </label>
 
@@ -70,6 +118,7 @@ const SignUp = () => {
                             <input
                                 name="password"
                                 type="password"
+                                onDoubleClick={handleToggleWatch}
                                 required
                                 autoComplete="current-password"
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -88,6 +137,7 @@ const SignUp = () => {
                                 name="confirmPassword"
                                 type="password"
                                 required
+                                onDoubleClick={handleToggleWatch}
                                 autoComplete="current-password"
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                             />
@@ -113,6 +163,15 @@ const SignUp = () => {
                     </Link>
                 </p>
             </div>
+
+            {user && <div className="mt-10 text-center text-sm/6 text-gray-500">
+                <p>
+                    Signed in as: <span className="font-semibold text-indigo-600">{user.email}</span>
+                    <br />
+                    {user.displayName && <span>Display Name: {user.displayName}</span>}
+                    {user.photoURL && <span>Photo URL: {user.photoURL}</span>}
+                </p>
+            </div>}
         </div>
     );
 };
