@@ -4,10 +4,12 @@ import { RouterProvider } from 'react-router-dom';
 import router from './routes/routes';
 import { HelmetProvider } from 'react-helmet-async';
 import CartProvider from './contexts/CartProvider';
+import AuthProvider from './contexts/AuthProvider';
 
 
 
 createRoot(document.getElementById('root')).render(
+  <AuthProvider>
   <HelmetProvider>
     <CartProvider>
       <div className="">
@@ -15,4 +17,5 @@ createRoot(document.getElementById('root')).render(
       </div>
     </CartProvider>
   </HelmetProvider>
+  </AuthProvider>
 )
