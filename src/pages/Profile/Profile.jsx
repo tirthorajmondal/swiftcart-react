@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaEdit, FaShoppingCart, FaHeart, FaAward } from 'react-icons/fa';
 import SEO from '../../components/SEO/SEO';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+
 
 const Profile = () => {
     const { user, logout } = useAuth();
@@ -52,7 +53,7 @@ const Profile = () => {
 
     return (
         <>
-            <SEO title="Swiftcart | Profile" description="View and manage your profile information" />
+            <SEO title="Swiftcart | Profile" description="View and manage your profile information" noindex={true} />
 
             <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">
@@ -104,8 +105,8 @@ const Profile = () => {
 
                             {/* Edit Form */}
                             <div className={`mt- 8 p-6 bg-gray-50 rounded-xl border-2 border-indigo-200 transition-all duration-500 ease-in-out overflow-hidden ${isEditing
-                                    ? 'max-h-96 opacity-100 visible'
-                                    : 'max-h-0 opacity-0 invisible'
+                                ? 'max-h-96 opacity-100 visible'
+                                : 'max-h-0 opacity-0 invisible'
                                 }`}>
                                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Edit Your Profile</h3>
                                 <div className="space-y-4">
@@ -261,7 +262,7 @@ const Profile = () => {
                                 </div>
                             ))}
                         </div>
-                        <button className="mt-6 btn btn-outline w-full">View All Orders</button>
+                        <button className="mt-6 btn btn-outline w-full" onClick={() => navigate('/my-orders')}>View All Orders</button>
                     </div>
                 </div>
             </div>

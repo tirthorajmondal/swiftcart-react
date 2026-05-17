@@ -1,8 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from './../../hooks/useAuth';
+import { FaGoogle } from 'react-icons/fa';
+import SEO from '../../components/SEO/SEO';
 
 const SignUp = () => {
-    const { signupWithEmailAndPassword,handleToggleWatch, updateUserProfile, user, loading, setLoading } = useAuth();
+    const { signupWithEmailAndPassword, handleToggleWatch, updateUserProfile, user, googleSignIn, loading, setLoading } = useAuth();
     const location = useLocation();
     // console.log(location);
     const navigate = useNavigate()
@@ -47,10 +49,22 @@ const SignUp = () => {
             });
     }
 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then((result) => {
+                const user = result.user;
+                console.log('Google Sign-In successful:', user);
+                navigate(location.state?.from?.pathname || '/');
+            })
+            .catch((error) => {
+                console.error('Error during Google Sign-In:', error);
+            });
 
+    }
 
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <SEO title={'Swiftcart | Sign Up'} description={'Create a Swiftcart account to save addresses, track orders, and checkout faster.'} />
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     alt="Your Company"
@@ -152,6 +166,25 @@ const SignUp = () => {
                         >
                             {loading ? <span className="loading loading-spinner loading-xs"></span>
                                 : 'Create'}
+                        </button>
+                    </div>
+
+                    {/* Divider + Google Sign-In */}
+                    <div className="mt-4">
+                        <div className="flex items-center gap-3">
+                            <hr className="flex-1 border-t border-gray-200" />
+                            <span className="text-xs text-gray-400">or</span>
+                            <hr className="flex-1 border-t border-gray-200" />
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={handleGoogleSignIn}
+                            disabled={loading}
+                            className="mt-4 btn btn-outline btn-neutral w-full flex items-center justify-center gap-3"
+                        >
+                            <FaGoogle className="text-red-500" />
+                            <span className="font-medium">Sign in with Google</span>
                         </button>
                     </div>
                 </form>

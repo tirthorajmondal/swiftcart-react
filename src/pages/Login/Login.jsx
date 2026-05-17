@@ -1,8 +1,11 @@
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { FaGoogle } from 'react-icons/fa';
+import SEO from '../../components/SEO/SEO';
 
 const Login = () => {
-    const { loginWithEmailAndPassword,user,handleToggleWatch, setUser, loading, setLoading } = useAuth();
+    const { loginWithEmailAndPassword, user, handleToggleWatch, setUser, loading, setLoading, googleSignIn } = useAuth();
+    const navigate = useNavigate();
     const location = useLocation();
     const from = location.state
 
@@ -35,6 +38,7 @@ const Login = () => {
 
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <SEO title={'Swiftcart | Login'} description={'Sign in to your Swiftcart account to view orders, manage profile, and checkout faster.'} />
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     alt="Your Company"
@@ -93,6 +97,36 @@ const Login = () => {
                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                             Log in
+                        </button>
+                    </div>
+
+                    {/* Divider + Google Sign-In */}
+                    <div className="mt-4">
+                        <div className="flex items-center gap-3">
+                            <hr className="flex-1 border-t border-gray-200" />
+                            <span className="text-xs text-gray-400">or</span>
+                            <hr className="flex-1 border-t border-gray-200" />
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                if (!googleSignIn) return;
+                                googleSignIn()
+                                    .then((result) => {
+                                        const user = result.user;
+                                        console.log('Google Sign-In successful:', user);
+                                        navigate(location.state?.from?.pathname || '/');
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error during Google Sign-In:', error);
+                                    });
+                            }}
+                            disabled={loading}
+                            className="mt-4 btn btn-outline btn-neutral w-full flex items-center justify-center gap-3"
+                        >
+                            <FaGoogle className="text-red-500" />
+                            <span className="font-medium">Sign in with Google</span>
                         </button>
                     </div>
                 </form>
